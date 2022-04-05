@@ -29,7 +29,7 @@ func (u *user) updateUser(db *sql.DB) error {
 //fungsi menghapus data user
 func (u *user) deleteUser(db *sql.DB) error {
 	//return errors.New("Belum ada kode apapun.")
-	statement := fmt.Sprintf("DELETE FROM users WHERE id=%id", u.ID)
+	statement := fmt.Sprintf("DELETE FROM users WHERE id=%d", u.ID)
 	//menjalankan statement
 	_, err := db.Exec(statement)
 	return err
@@ -53,7 +53,7 @@ func (u *user) createUser(db *sql.DB) error {
 //fungsi menampilkan banyak users
 func (u *user) getUsers(db *sql.DB, start, count int) ([]user, error) {
 	//return nil, errors.New("Belum ada kode apapun.")
-	statement := fmt.Sprintf("SELECT id, name FROM users LIMIT %D OFFSET %d", count, start)
+	statement := fmt.Sprintf("SELECT id, name FROM users LIMIT %d OFFSET %d", count, start)
 	rows, err := db.Query(statement)
 	if err != nil {
 		return nil, err
@@ -71,8 +71,4 @@ func (u *user) getUsers(db *sql.DB, start, count int) ([]user, error) {
 		users = append(users, u)
 	}
 	return users, nil
-}
-
-func main() {
-
 }
